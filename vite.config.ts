@@ -9,6 +9,8 @@ import manifest from "./manifest";
 const root = resolve(__dirname, "src");
 const pagesDir = resolve(root, "pages");
 const assetsDir = resolve(root, "assets");
+const servicesDir = resolve(root, "services");
+const utilsDir = resolve(root, "utils");
 const outDir = resolve(__dirname, "dist");
 const publicDir = resolve(__dirname, "public");
 
@@ -24,6 +26,8 @@ export default defineConfig({
       "@src": root,
       "@assets": assetsDir,
       "@pages": pagesDir,
+      "@services": servicesDir,
+      "@utils": utilsDir,
     },
   },
   plugins: [
@@ -41,14 +45,11 @@ export default defineConfig({
     reportCompressedSize: isProduction,
     rollupOptions: {
       input: {
-        devtools: resolve(pagesDir, "devtools", "index.html"),
-        panel: resolve(pagesDir, "panel", "index.html"),
         content: resolve(pagesDir, "content", "index.ts"),
         background: resolve(pagesDir, "background", "index.ts"),
         contentStyle: resolve(pagesDir, "content", "style.scss"),
         popup: resolve(pagesDir, "popup", "index.html"),
-        newtab: resolve(pagesDir, "newtab", "index.html"),
-        options: resolve(pagesDir, "options", "index.html"),
+        sandbox: resolve(pagesDir, "sandbox", "index.html"),
       },
       watch: {
         include: ["src/**", "vite.config.ts"],

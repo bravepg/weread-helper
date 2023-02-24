@@ -1,89 +1,32 @@
-<div align="center">
-<img src="public/icon-128.png" alt="logo"/>
-<h1> Chrome Extension Boilerplate with<br/>React + Vite + TypeScript</h1>
+微信读书插件可以将微信读书中书籍`元信息`、`高亮标注`，`划线感想`、`书评`等同步至语雀瓶平台，初次使用，如果书籍较多，同步会比较慢，后面更新的时候只会更新有变化的书籍。
 
-![](https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=react&logoColor=black)
-![](https://img.shields.io/badge/Typescript-3178C6?style=flat-square&logo=typescript&logoColor=white)
-![](https://badges.aleen42.com/src/vitejs.svg)
-![GitHub action badge](https://github.com/Jonghakseo/chrome-extension-boilerplate-react-vite/actions/workflows/build.yml/badge.svg)
-<img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https://github.com/Jonghakseo/chrome-extension-boilerplate-react-viteFactions&count_bg=%23#222222&title_bg=%23#454545&title=😀&edge_flat=true" alt="hits"/>
+## 功能
+- 同步书籍元数据例如：书籍封面，作者、出版社、出版时间。
+- 同步微信读书的高亮划线。
+- 读书笔记分为`划线笔记`，`页面笔记`， `章节笔记`。
+- 支持选择语雀目录，生成的文件自动存储到指定目录下。
+- 自定义同步模板（TBD）。
 
+## 安装方法
+插件市场直接搜索 `weread-helper`，找到 `weread-helper` 点击添加至 `chrome` 安装。
+<img width="1872" alt="image" src="https://cdn.nlark.com/yuque/0/2023/jpeg/231077/1677204254232-9e252da9-8d23-4a23-aeea-48adae56889a.jpeg?x-oss-process=image%2Fresize%2Cw_2130%2Climit_0%2Finterlace%2C1">
 
-> This project is listed in the [Awesome Vite](https://github.com/vitejs/awesome-vite)
+## 设置
+1. 打开插件，点击前往登录微信读书进行账号登录。 
+2. 绑定语雀账户。https://www.yuque.com/u102810/vpgl60/yxu70cfc1rtgzxt5?singleDoc
 
-</div>
+## 使用
+1. 本插件是覆盖式更新，请不要在同步的文件里修改内容。本插件的目的是为了方便地微信读书的碎片化记录同步到笔记软件，同步过来的数据应该作为个人的元数据。写`永久笔记`（为什么写永久笔记参考[《卡片笔记写作法》](https://book.douban.com/subject/35503571/)）的时候可以将这些元数据作为引用。
 
-## Table of Contents
+## 已知问题
+- 长期不使用本插件，微信读书的登录信息可能会失效，需要重新登录。
 
-- [Intro](#intro)
-- [Features](#features)
-- [Installation](#installation)
-  - [Procedures](#procedures)
-- [Screenshots](#screenshots)
-  - [NewTab](#newtab)
-  - [Popup](#popup)  
-- [Documents](#documents)
+## TODO
+- [x] 自定义同步模板
 
+## 免责声明
+本程序没有爬取任何书籍内容，只提供了一个浏览器功能，没有侵犯书籍作者版权和微信读书官方利益。
 
-## Intro <a name="intro"></a>
-This boilerplate is made for creating chrome extensions using React and Typescript.
-> The focus was on improving the build speed and development experience with Vite.
-
-## Features <a name="features"></a>
-- [React 18](https://reactjs.org/)
-- [TypeScript](https://www.typescriptlang.org/)
-- [Jest](https://jestjs.io/)
-- [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/)
-- [Vite](https://vitejs.dev/)
-- [SASS](https://sass-lang.com/)
-- [ESLint](https://eslint.org/)
-- [Prettier](https://prettier.io/)
-- [Chrome Extension Manifest Version 3](https://developer.chrome.com/docs/extensions/mv3/intro/)
-- HMR(incomplete)
-  - [Refresh PR](https://github.com/Jonghakseo/chrome-extension-boilerplate-react-vite/pull/25)
-
-## Installation <a name="installation"></a>
-
-### Procedures <a name="procedures"></a>
-1. Clone this repository.
-2. Change `name` and `description` in package.json => **Auto synchronize with manifest** 
-3. Run `yarn install` or `npm i` (check your node version >= 16.6, recommended >= 18)
-4. Run `yarn dev` or `npm run dev`
-5. Load Extension on Chrome
-   1. Open - Chrome browser
-   2. Access - chrome://extensions
-   3. Check - Developer mode
-   4. Find - Load unpacked extension
-   5. Select - `dist` folder in this project (after dev or build)
-6. If you want to build in production, Just run `yarn build` or `npm run build`.
-
-## Screenshots <a name="screenshots"></a>
-
-### New Tab <a name="newtab"></a>
-
-<img width="971" src="https://user-images.githubusercontent.com/53500778/162631646-cd40976b-b737-43d0-8e6a-6ac090a2e2d4.png">
-
-### Popup <a name="popup"></a>
-
-<img width="314" alt="popup" src="https://user-images.githubusercontent.com/53500778/203561728-23517d46-12e3-4139-8a4f-e0b2f22a6ab3.png">
-
-
-## Documents <a name="documents"></a>
-- [Vite Plugin](https://vitejs.dev/guide/api-plugin.html)
-- [ChromeExtension](https://developer.chrome.com/docs/extensions/mv3/)
-- [Rollup](https://rollupjs.org/guide/en/)
-- [Rollup-plugin-chrome-extension](https://www.extend-chrome.dev/rollup-plugin)
-
-
-
----
-## Thanks To
-
-| [Jetbrains](https://jb.gg/OpenSourceSupport)                                                                           | [Jackson Hong](https://www.linkedin.com/in/j-acks0n/)                                            |
-|--------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------|
-| <img width="100" src="https://resources.jetbrains.com/storage/products/company/brand/logos/jb_beam.png" alt="JetBrains Logo (Main) logo."> | <img width="100" src='https://avatars.githubusercontent.com/u/23139754?v=4' alt='Jackson Hong'/> |
-
-
----
-
-[Jonghakseo](https://nookpi.tistory.com/)
+## 感谢
+- [weread_helper_extension](https://github.com/ellipse42/weread_helper_extension)
+- [obsidian-weread-plugin](https://github.com/zhaohongxuan/obsidian-weread-plugin)

@@ -1,0 +1,99 @@
+import * as nunjucks from "nunjucks";
+// import notebookTemplate from "@assets/template/notebook.njk";
+import type { Notebook } from "@src/types/weread";
+
+const notebookTemplate = `
+# 关于本书
+![{{metaData.title}}|200]({{metaData.cover}})
+|  书名  |  作者  |  出版社  | 出版时间  |
+|  ----  |  ----  |  ----  |  ----  |
+|  {{metaData.title}}  |  {{metaData.author}} |  {{metaData.publisher}}  |  {{metaData.publishTime}}  |
+# 内容简介
+{{metaData.intro}}
+# 高亮划线
+{% for chapter in chapterHighlights %}
+{{levelMap[chapter.level]}} {{chapter.chapterTitle}}
+{% for highlight in chapter.highlights %}
+{% if highlight.markText %}
+> - 📌 {{ highlight.markText |trim }}
+> - ⏱ {{highlight.createdTime}}
+{% if not loop.last %}
+{# 高亮划线，不是最后一条，增加空格 #}
+{% endif %}
+{% endif %}
+{% endfor %}
+{% endfor %}
+# 读书笔记
+{% for chapter in bookReview.chapterReviews %}
+{% if chapter.reviews or chapter.chapterReview %}
+{{levelMap[chapter.level]}} {{chapter.chapterTitle}}
+{% if chapter.chapterReviews %}
+{% for chapterReview in chapter.chapterReviews %}
+> - 💭 {{chapterReview.content}}
+> - ⏱ {{chapterReview.createdTime}}
+{% if not loop.last %}
+{# 章节评论，不是最后一条，增加空格 #}
+{% endif %}
+{% endfor%}
+{%endif %}
+{% if chapter.reviews %}
+{%for review in chapter.reviews %}
+> - 📌 {{review.abstract |trim }}
+> - 💭 {{review.content}}
+> - ⏱ {{review.createdTime}}
+{% if not loop.last %}
+{# 划线评论，不是最后一条，增加空格 #}
+{% endif %}
+{% endfor %}
+{%endif %}
+{% endif %}
+{% endfor %}
+# 本书评论
+{% if bookReview.bookReviews %}
+{% for bookReview in bookReview.bookReviews %}
+## 书评 No.{{loop.index}}
+- 💭 {{bookReview.mdContent}}
+- ⏱ {{bookReview.createdTime}}
+{% endfor%}
+{% endif %}
+`;
+
+export default class Renderer {
+  constructor() {
+    nunjucks.configure({
+      autoescape: false,
+      trimBlocks: true,
+      lstripBlocks: true,
+    });
+  }
+
+  validate(template: string): boolean {
+    try {
+      nunjucks.renderString(template, {});
+      return true;
+    } catch (error) {
+      return false;
+    }
+  }
+
+  render(entry: Notebook): string {
+    const { metaData, chapterHighlights, bookReview } = entry;
+
+    const context: Notebook = {
+      metaData,
+      chapterHighlights,
+      bookReview,
+    };
+
+    const content = nunjucks.renderString(notebookTemplate, {
+      ...context,
+      levelMap: {
+        1: "##",
+        2: "###",
+        3: "####",
+      },
+    });
+
+    return content;
+  }
+}

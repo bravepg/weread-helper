@@ -1,45 +1,52 @@
-.App {
+.popupContainer {
+  padding: 16px 24px;
+}
+
+.popupLoading {
   position: absolute;
-  top: 0px;
-  bottom: 0px;
-  left: 0px;
-  right: 0px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%);
+}
+
+.popupHeader {
+  margin-bottom: 24px;
   text-align: center;
-  height: 100%;
-  padding: 10px;
-  background-color: #282c34;
 }
 
-.App-logo {
-  height: 30vmin;
-  pointer-events: none;
+.wereadAvatar {
+  height: 36px;
+  line-height: 32px;
+  width: 36px;
+  margin-bottom: 8px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.wereadLogo {
+  vertical-align: sub;
+  padding-right: 4px;
+  color: orange;
 }
 
-.App-header {
-  height: 100%;
+.popupLabel {
+  width: 48px;
+  color: rgba(0, 0, 0, 64%);
+  text-align: right;
+}
+
+.popupDescription {
+  padding-bottom: 16px;
+  color: rgba(0, 0, 0, 36%);
+}
+
+.tokenContainer,
+.noteContainer {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  margin-bottom: 20px;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.settingButton {
+  position: absolute;
+  top: 8px;
+  right: 4px;
 }

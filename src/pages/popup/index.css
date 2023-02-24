@@ -1,13 +1,13 @@
 body {
-  width: 300px;
-  height: 260px;
+  width: 375px;
+  height: 300px;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-
+  background: linear-gradient(180deg, #E6F1FF 0%, #E7F2FE 2.78%, rgba(255, 255, 255, 0) 88.87%);
   position: relative;
 }
 
